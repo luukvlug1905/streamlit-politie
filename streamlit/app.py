@@ -100,15 +100,14 @@ with col4:
         'Selecteer de gewenste jaren',
         int(df_politie['year'].min()), int(df_politie['year'].max()), ())
 
-st.write(yearFilter[0])
-
+yearFilter = [range(yearFilter[0], yearFilter[1], 1)]
     
 #If statement om het dashboard te laten reageren op het de filters
 if wijkFilter:
     df_politie = df_politie.loc[df_politie['WK_NAAM'].isin(wijkFilter)]
     
-#if yearFilter:
-#    df_politie = df_politie.loc[df_politie['year'].isin(yearFilter)]
+if yearFilter:
+    df_politie = df_politie.loc[df_politie['year'].isin(yearFilter)]
 
 #Groupby aanmaken voor plots
 groupbyWijk = df_politie.groupby(by=['WK_NAAM'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
