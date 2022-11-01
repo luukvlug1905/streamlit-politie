@@ -95,7 +95,7 @@ df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
 #Rangeslider van de jaren
 yearFilter = st.slider(
     'Selecteer de gewenste jaren',
-    df_politie['year'].min(), df_politie['year'].max(), ())
+    int(df_politie['year'].min()), int(df_politie['year'].max()), ())
 
 #If statement om het dashboard te laten reageren op het de filters
 if wijkFilter:
