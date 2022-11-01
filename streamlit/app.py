@@ -51,10 +51,6 @@ wijkFilter = st.multiselect(
        'Burgwallen-Nieuwe Zijde'],
         ['Alle wijken'])
 
-#If statement om het dashboard te laten reageren op het wijkFilter
-if wijkFilter != 'Alle wijken':
-    df_politie = df_politie.loc[df_politie['WK_NAAM'] == wijkFilter]
-
 #politie df inladen
 df_politie = pd.read_csv('politie.csv')
 
@@ -93,6 +89,10 @@ df_politie['year'] = df_politie['Perioden'].apply(lambda x: x.split('JJ')[0])
 
 #Total kolom droppen uit dataframe voor beter overzicht in plots
 df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
+
+#If statement om het dashboard te laten reageren op het wijkFilter
+if wijkFilter != 'Alle wijken':
+    df_politie = df_politie.loc[df_politie['WK_NAAM'] == wijkFilter]
 
 #Groupby aanmaken voor plots
 groupbyWijk = df_politie.groupby(by=['WK_NAAM'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
