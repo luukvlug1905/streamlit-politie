@@ -17,7 +17,7 @@ st.title("Misdrijven in Amsterdam in de periode van 2013 t/m 2021")
 #Algemeen filter opstellen voor het dashboard
 wijkFilter = st.multiselect(
     'Selecteer hier de gewenste wijken:',
-    ['Alle wijken', 'Driemond', 'Gein', 'Apollobuurt', 'Holendrecht/Reigersbos',
+    ['Driemond', 'Gein', 'Apollobuurt', 'Holendrecht/Reigersbos',
        'Amstel III/Bullewijk', 'Nellestein', 'Bijlmer Centrum (D,F,H)',
        'Bijlmer Oost (E,G,K)', 'Overtoomse Veld', 'Buitenveldert-Oost',
        'Slotervaart Zuid', 'Buitenveldert-West', 'Sloter-/Riekerpolder',
@@ -49,7 +49,7 @@ wijkFilter = st.multiselect(
        'De Weteringschans', 'Haarlemmerbuurt', 'Nieuwmarkt/Lastage',
        'Grachtengordel-West', 'Burgwallen-Oude Zijde',
        'Burgwallen-Nieuwe Zijde'],
-        ['Alle wijken'])
+        [])
 
 #politie df inladen
 df_politie = pd.read_csv('politie.csv')
@@ -91,9 +91,8 @@ df_politie['year'] = df_politie['Perioden'].apply(lambda x: x.split('JJ')[0])
 df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
 
 #If statement om het dashboard te laten reageren op het wijkFilter
-st.write(wijkFilter)
-st.write(wijkFilter[1])
-df_politie = df_politie.loc[df_politie['WK_NAAM'].isin(wijkFilter)]
+if wijkFilter:
+    df_politie = df_politie.loc[df_politie['WK_NAAM'].isin(wijkFilter)]
 
 #Groupby aanmaken voor plots
 groupbyWijk = df_politie.groupby(by=['WK_NAAM'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
