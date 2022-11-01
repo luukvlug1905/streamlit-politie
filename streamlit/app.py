@@ -51,12 +51,7 @@ wijkFilter = st.multiselect(
        'Burgwallen-Nieuwe Zijde'],
         [])
 
-#Rangeslider van de jaren
-a=df_politie['year'].min()
-b=df_politie['year'].max()
-yearFilter = st.slider(
-    'Selecteer de gewenste jaren',
-    a, b, ())
+
 
 #politie df inladen
 df_politie = pd.read_csv('politie.csv')
@@ -96,6 +91,11 @@ df_politie['year'] = df_politie['Perioden'].apply(lambda x: x.split('JJ')[0])
 
 #Total kolom droppen uit dataframe voor beter overzicht in plots
 df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
+
+#Rangeslider van de jaren
+yearFilter = st.slider(
+    'Selecteer de gewenste jaren',
+    df_politie['year'].min(), df_politie['year'].max(), ())
 
 #If statement om het dashboard te laten reageren op het de filters
 if wijkFilter:
