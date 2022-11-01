@@ -12,7 +12,7 @@ from streamlit_folium import folium_static
 st.set_page_config(
     layout="wide")
 
-st.title("Dashboard misdrijven in Amsterdam in de periode van 2013 t/m 2021")
+st.title("Misdrijven in Amsterdam in de periode van 2013 t/m 2021")
 
 #politie df inladen
 df_politie = pd.read_csv('politie.csv')
