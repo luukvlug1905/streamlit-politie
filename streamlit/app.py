@@ -11,9 +11,10 @@ from streamlit_folium import folium_static
 #Streamlit page config
 st.set_page_config(
     layout="wide")
-
+#Dashboard title
 st.title("Misdrijven in Amsterdam in de periode van 2013 t/m 2021")
 
+#Algemeen filter opstellen voor het dashboard
 wijkFilter = st.multiselect(
     'Selecteer hier de gewenste wijken:',
     ['Alle wijken', 'Driemond', 'Gein', 'Apollobuurt', 'Holendrecht/Reigersbos',
@@ -49,6 +50,10 @@ wijkFilter = st.multiselect(
        'Grachtengordel-West', 'Burgwallen-Oude Zijde',
        'Burgwallen-Nieuwe Zijde'],
         ['Alle wijken'])
+
+#If statement om het dashboard te laten reageren op het wijkFilter
+if wijkFilter != 'Alle wijken':
+    df_politie = df_politie.loc[df_politie['WK_NAAM'] == wijkFilter]
 
 #politie df inladen
 df_politie = pd.read_csv('politie.csv')
