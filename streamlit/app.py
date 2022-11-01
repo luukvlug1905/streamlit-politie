@@ -94,6 +94,8 @@ df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
 #if wijkFilter != 'Alle wijken':
 #    df_politie = df_politie.loc[df_politie['WK_NAAM'] == wijkFilter]
 st.write(wijkFilter)
+wijkFilter.apply(lambda x: x.split("'")[0])
+st.write(wijkFilter)
 
 #Groupby aanmaken voor plots
 groupbyWijk = df_politie.groupby(by=['WK_NAAM'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
