@@ -106,6 +106,7 @@ with col4:
 
 yearFilter = [*range(yearFilter[0], yearFilter[1], 1)]
 st.write(df_politie['year'].max())
+st.write(yearFilter)
 
 #If statement om het dashboard te laten reageren op het de filters
 if wijkFilter:
