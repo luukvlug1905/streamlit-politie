@@ -14,45 +14,6 @@ st.set_page_config(
 #Dashboard title
 st.title("Misdrijven in Amsterdam in de periode van 2013 t/m 2021")
 
-#Algemeen filter opstellen voor het dashboard
-wijkFilter = st.multiselect(
-    'Selecteer hier de gewenste wijken:',
-    ['Driemond', 'Gein', 'Apollobuurt', 'Holendrecht/Reigersbos',
-       'Amstel III/Bullewijk', 'Nellestein', 'Bijlmer Centrum (D,F,H)',
-       'Bijlmer Oost (E,G,K)', 'Overtoomse Veld', 'Buitenveldert-Oost',
-       'Slotervaart Zuid', 'Buitenveldert-West', 'Sloter-/Riekerpolder',
-       'Westlandgracht', 'Elzenhagen', 'Oude Pijp', 'Slotervaart Noord',
-       'De Punt', 'Middelveldsche Akerpolder', 'Lutkemeer/Ookmeer',
-       'Osdorp-Midden', 'Osdorp-Oost', 'Slotermeer-Zuidwest', 'Eendracht',
-       'Geuzenveld', 'Chassébuurt', 'Slotermeer-Noordoost',
-       'Noordelijke IJ-oevers Oost', 'Tuindorp Nieuwendam', 'Waterland',
-       'Noordelijke IJ-oevers West', 'Waterlandpleinbuurt',
-       'Buikslotermeer', 'Banne Buiksloot', 'Betondorp', 'Kadoelen',
-       'Tuindorp Oostzaan', 'Oostzanerwerf', 'Indische Buurt Oost',
-       'Tuindorp Buiksloot', 'Nieuwendammerdijk/Buiksloterdijk',
-       'Frankendael', 'Volewijck', 'IJplein/Vogelbuurt',
-       'Prinses Irenebuurt e.o.', 'Omval/Overamstel', 'Middenmeer',
-       'Rijnbuurt', 'Scheldebuurt', 'IJburg Zuid', 'IJselbuurt',
-       'IJburg Oost', 'Museumkwartier', 'Stadionbuurt', 'Willemspark',
-       'Westindische Buurt', 'Hoofddorppleinbuurt', 'Schinkelbuurt',
-       'Landlust', 'Van Galenbuurt', 'Hoofdweg e.o.', 'Geuzenbuurt',
-       'Erasmuspark', 'De Kolenkit', 'IJburg West', 'Sloterdijk',
-       'Zeeburgereiland/Nieuwe Diep', 'Transvaalbuurt', 'Centrale Markt',
-       'Oostelijk Havengebied', 'Indische Buurt West', 'Dapperbuurt',
-       'Weesperzijde', 'Oosterparkbuurt', 'Zuid Pijp', 'Nieuwe Pijp',
-       'Zuidas', 'Houthavens', 'Overtoomse Sluis', 'Vondelbuurt',
-       'Kinkerbuurt', 'Helmersbuurt', 'Van Lennepbuurt', 'Da Costabuurt',
-       'Frederik Hendrikbuurt', 'Spaarndammer- en Zeeheldenbuurt',
-       'Staatsliedenbuurt', 'Grachtengordel-Zuid',
-       'Westelijk Havengebied', 'Bedrijventerrein Sloterdijk',
-       'Oostelijke Eilanden/Kadijken', 'Jordaan', 'Weesperbuurt/Plantage',
-       'De Weteringschans', 'Haarlemmerbuurt', 'Nieuwmarkt/Lastage',
-       'Grachtengordel-West', 'Burgwallen-Oude Zijde',
-       'Burgwallen-Nieuwe Zijde'],
-        [])
-
-
-
 #politie df inladen
 df_politie = pd.read_csv('politie.csv')
 
@@ -92,7 +53,53 @@ df_politie['year'] = df_politie['Perioden'].apply(lambda x: x.split('JJ')[0])
 #Total kolom droppen uit dataframe voor beter overzicht in plots
 df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
 
-#Rangeslider van de jaren
+#Filters opstellen voor het dashboard
+col3, col4 = st.columns(2)
+
+with col3:
+    #Algemeen filter opstellen voor het dashboard
+    wijkFilter = st.multiselect(
+    'Selecteer hier de gewenste wijken:',
+    ['Driemond', 'Gein', 'Apollobuurt', 'Holendrecht/Reigersbos',
+       'Amstel III/Bullewijk', 'Nellestein', 'Bijlmer Centrum (D,F,H)',
+       'Bijlmer Oost (E,G,K)', 'Overtoomse Veld', 'Buitenveldert-Oost',
+       'Slotervaart Zuid', 'Buitenveldert-West', 'Sloter-/Riekerpolder',
+       'Westlandgracht', 'Elzenhagen', 'Oude Pijp', 'Slotervaart Noord',
+       'De Punt', 'Middelveldsche Akerpolder', 'Lutkemeer/Ookmeer',
+       'Osdorp-Midden', 'Osdorp-Oost', 'Slotermeer-Zuidwest', 'Eendracht',
+       'Geuzenveld', 'Chassébuurt', 'Slotermeer-Noordoost',
+       'Noordelijke IJ-oevers Oost', 'Tuindorp Nieuwendam', 'Waterland',
+       'Noordelijke IJ-oevers West', 'Waterlandpleinbuurt',
+       'Buikslotermeer', 'Banne Buiksloot', 'Betondorp', 'Kadoelen',
+       'Tuindorp Oostzaan', 'Oostzanerwerf', 'Indische Buurt Oost',
+       'Tuindorp Buiksloot', 'Nieuwendammerdijk/Buiksloterdijk',
+       'Frankendael', 'Volewijck', 'IJplein/Vogelbuurt',
+       'Prinses Irenebuurt e.o.', 'Omval/Overamstel', 'Middenmeer',
+       'Rijnbuurt', 'Scheldebuurt', 'IJburg Zuid', 'IJselbuurt',
+       'IJburg Oost', 'Museumkwartier', 'Stadionbuurt', 'Willemspark',
+       'Westindische Buurt', 'Hoofddorppleinbuurt', 'Schinkelbuurt',
+       'Landlust', 'Van Galenbuurt', 'Hoofdweg e.o.', 'Geuzenbuurt',
+       'Erasmuspark', 'De Kolenkit', 'IJburg West', 'Sloterdijk',
+       'Zeeburgereiland/Nieuwe Diep', 'Transvaalbuurt', 'Centrale Markt',
+       'Oostelijk Havengebied', 'Indische Buurt West', 'Dapperbuurt',
+       'Weesperzijde', 'Oosterparkbuurt', 'Zuid Pijp', 'Nieuwe Pijp',
+       'Zuidas', 'Houthavens', 'Overtoomse Sluis', 'Vondelbuurt',
+       'Kinkerbuurt', 'Helmersbuurt', 'Van Lennepbuurt', 'Da Costabuurt',
+       'Frederik Hendrikbuurt', 'Spaarndammer- en Zeeheldenbuurt',
+       'Staatsliedenbuurt', 'Grachtengordel-Zuid',
+       'Westelijk Havengebied', 'Bedrijventerrein Sloterdijk',
+       'Oostelijke Eilanden/Kadijken', 'Jordaan', 'Weesperbuurt/Plantage',
+       'De Weteringschans', 'Haarlemmerbuurt', 'Nieuwmarkt/Lastage',
+       'Grachtengordel-West', 'Burgwallen-Oude Zijde',
+       'Burgwallen-Nieuwe Zijde'],
+        [])
+
+    with col4:
+    #rangeslider voor de jaren opstellen
+    yearFilter = st.slider(
+    'Selecteer de gewenste jaren',
+    int(df_politie['year'].min()), int(df_politie['year'].max()), ())
+
 yearFilter = st.slider(
     'Selecteer de gewenste jaren',
     int(df_politie['year'].min()), int(df_politie['year'].max()), ())
