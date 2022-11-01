@@ -100,7 +100,7 @@ with col4:
         'Selecteer de gewenste jaren',
         int(df_politie['year'].min()), int(df_politie['year'].max()), ())
 
-yearFilter = [range(yearFilter[0], yearFilter[1], 1)]
+yearFilter = [*range(yearFilter[0], yearFilter[1], 1)]
 st.write(yearFilter)    
 
 #If statement om het dashboard te laten reageren op het de filters
