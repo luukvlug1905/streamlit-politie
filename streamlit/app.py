@@ -93,9 +93,9 @@ df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
 #If statement om het dashboard te laten reageren op het wijkFilter
 #if wijkFilter != 'Alle wijken':
 #    df_politie = df_politie.loc[df_politie['WK_NAAM'] == wijkFilter]
-st.write(wijkFilter)
-wijkFilter.apply(lambda x: x.split("'")[0])
-st.write(wijkFilter)
+st.write(wijkFilter[1])
+wijkFilter[1].apply(lambda x: x.split("'")[0])
+st.write(wijkFilter[1])
 
 #Groupby aanmaken voor plots
 groupbyWijk = df_politie.groupby(by=['WK_NAAM'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
