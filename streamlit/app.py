@@ -115,5 +115,3 @@ with col2:
                              
 #Folium map weergeven                             
 folium_static(m)
-
-st.dataframe(df_politie)
