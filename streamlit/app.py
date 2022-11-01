@@ -100,10 +100,6 @@ with col4:
         'Selecteer de gewenste jaren',
         int(df_politie['year'].min()), int(df_politie['year'].max()), ())
 
-yearFilter = st.slider(
-    'Selecteer de gewenste jaren',
-    int(df_politie['year'].min()), int(df_politie['year'].max()), ())
-
 #If statement om het dashboard te laten reageren op het de filters
 if wijkFilter:
     df_politie = df_politie.loc[df_politie['WK_NAAM'].isin(wijkFilter)]
