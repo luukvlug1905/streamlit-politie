@@ -94,18 +94,18 @@ with col3:
        'Burgwallen-Nieuwe Zijde'],
         [])
 
-with col4:
+#with col4:
 #rangeslider voor de jaren opstellen
-    yearFilter = st.slider(
-        'Selecteer de gewenste jaren',
-        int(df_politie['year'].min()), int(df_politie['year'].max()), ())
+#    yearFilter = st.slider(
+#        'Selecteer de gewenste jaren',
+#        int(df_politie['year'].min()), int(df_politie['year'].max()), ())
 
 #If statement om het dashboard te laten reageren op het de filters
 if wijkFilter:
     df_politie = df_politie.loc[df_politie['WK_NAAM'].isin(wijkFilter)]
     
-if yearFilter:
-    df_politie = df_politie.loc[df_politie['year'].isin(yearFilter)]
+#if yearFilter:
+#    df_politie = df_politie.loc[df_politie['year'].isin(yearFilter)]
 
 #Groupby aanmaken voor plots
 groupbyWijk = df_politie.groupby(by=['WK_NAAM'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
