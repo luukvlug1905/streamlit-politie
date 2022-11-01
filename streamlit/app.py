@@ -52,9 +52,11 @@ wijkFilter = st.multiselect(
         [])
 
 #Rangeslider van de jaren
+a=df_politie['year'].min()
+b=df_politie['year'].max()
 yearFilter = st.slider(
     'Selecteer de gewenste jaren',
-    df_politie['year'].min(), df_politie['year'].max(), ())
+    a, b, ())
 
 #politie df inladen
 df_politie = pd.read_csv('politie.csv')
