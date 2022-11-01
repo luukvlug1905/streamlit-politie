@@ -105,9 +105,6 @@ with col4:
 
 yearFilter = [*range(yearFilter[0], yearFilter[1]+1, 1)]
 
-st.write(yearFilter)
-st.write(df_politie['year'].min())
-
 #If statement om het dashboard te laten reageren op het de filters
 if wijkFilter:
     df_politie = df_politie.loc[df_politie['WK_NAAM'].isin(wijkFilter)]
