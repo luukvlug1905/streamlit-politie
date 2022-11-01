@@ -112,8 +112,8 @@ st.write(wijkFilter)
 if wijkFilter:
     df_politie = df_politie.loc[df_politie['WK_NAAM'].isin(wijkFilter)]
     
-#if yearFilter:
-#df_politie = df_politie.loc[df_politie['year'].isin(yearFilter)]
+if yearFilter:
+    df_politie = df_politie.loc[df_politie['year'].isin(yearFilter)]
 
 #Groupby aanmaken voor plots
 groupbyWijk = df_politie.groupby(by=['WK_NAAM'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
