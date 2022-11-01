@@ -41,6 +41,7 @@ df_politie['SoortRegio_3'] = df_politie['SoortRegio_3'].apply(lambda x : x if x 
 #object type vervangen voor float voor visualisaties
 df_politie['GeregistreerdeMisdrijven_1'] = pd.to_numeric(df_politie['GeregistreerdeMisdrijven_1'], errors="coerce")
 
+
 #duplicate kolom droppen
 df_politie = df_politie.drop(columns="WK_CODE")
 df_politie = df_politie.drop(columns="Title_y")
@@ -52,6 +53,9 @@ df_politie['year'] = df_politie['Perioden'].apply(lambda x: x.split('JJ')[0])
 
 #Total kolom droppen uit dataframe voor beter overzicht in plots
 df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
+
+#year to numeric
+df_politie['year'] = pd.to_numeric(df_politie['year'], errors="coerce")
 
 #Filters opstellen voor het dashboard
 col3, col4 = st.columns(2)
