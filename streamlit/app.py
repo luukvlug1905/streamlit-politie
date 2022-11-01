@@ -91,8 +91,9 @@ df_politie['year'] = df_politie['Perioden'].apply(lambda x: x.split('JJ')[0])
 df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
 
 #If statement om het dashboard te laten reageren op het wijkFilter
-if wijkFilter != 'Alle wijken':
-    df_politie = df_politie.loc[df_politie['WK_NAAM'] == wijkFilter]
+#if wijkFilter != 'Alle wijken':
+#    df_politie = df_politie.loc[df_politie['WK_NAAM'] == wijkFilter]
+st.write(wijkFilter)
 
 #Groupby aanmaken voor plots
 groupbyWijk = df_politie.groupby(by=['WK_NAAM'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
@@ -118,11 +119,8 @@ df_politie_wijken_merged = df_politie_wijken_merged.sort_values(by="Geregistreer
                              
 #Folium choropleth opstellen
 geo_df = gpd.GeoDataFrame(data=df_politie_wijken_merged, geometry="geometry")
-
 geo_df = geo_df.to_crs(epsg = 4326)
-
 geo = gpd.GeoSeries(geo_df.set_index('WK_CODE')['geometry']).to_json()
-
 m = folium.Map(location=[52.3568117, 4.9111453], zoom_start=11)
 folium.Choropleth(
     geo_data = geo,
