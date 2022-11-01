@@ -100,14 +100,8 @@ with col4:
         'Selecteer de gewenste jaren',
         int(df_politie['year'].min()), int(df_politie['year'].max()), ())
 
-st.write(yearFilter)
-list(yearFilter)
-if yearFilter[0] < yearFilter[1]:
-    # unpack the result
-    yearFilter.extend(range(start, end))
-    # Append the last value
-    yearFilter.append(end)
-st.write(yearFilter)
+st.write(list(yearFilter))
+
     
 #If statement om het dashboard te laten reageren op het de filters
 if wijkFilter:
