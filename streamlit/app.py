@@ -94,11 +94,11 @@ with col3:
        'Burgwallen-Nieuwe Zijde'],
         [])
 
-    with col4:
-    #rangeslider voor de jaren opstellen
+with col4:
+#rangeslider voor de jaren opstellen
     yearFilter = st.slider(
-    'Selecteer de gewenste jaren',
-    int(df_politie['year'].min()), int(df_politie['year'].max()), ())
+        'Selecteer de gewenste jaren',
+        int(df_politie['year'].min()), int(df_politie['year'].max()), ())
 
 yearFilter = st.slider(
     'Selecteer de gewenste jaren',
