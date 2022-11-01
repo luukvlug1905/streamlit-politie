@@ -51,6 +51,11 @@ wijkFilter = st.multiselect(
        'Burgwallen-Nieuwe Zijde'],
         [])
 
+#Rangeslider van de jaren
+yearFilter = st.slider(
+    'Selecteer de gewenste jaren',
+    df_politie['year'].min(), df_politie['year'].max(), ())
+
 #politie df inladen
 df_politie = pd.read_csv('politie.csv')
 
@@ -90,9 +95,12 @@ df_politie['year'] = df_politie['Perioden'].apply(lambda x: x.split('JJ')[0])
 #Total kolom droppen uit dataframe voor beter overzicht in plots
 df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
 
-#If statement om het dashboard te laten reageren op het wijkFilter
+#If statement om het dashboard te laten reageren op het de filters
 if wijkFilter:
     df_politie = df_politie.loc[df_politie['WK_NAAM'].isin(wijkFilter)]
+    
+if yearFilter:
+    df_politie = df_politie.loc[df_politie['year'].isin(yearFilter)]
 
 #Groupby aanmaken voor plots
 groupbyWijk = df_politie.groupby(by=['WK_NAAM'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
