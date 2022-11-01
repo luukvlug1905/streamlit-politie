@@ -43,7 +43,7 @@ df_politie['GeregistreerdeMisdrijven_1'] = pd.to_numeric(df_politie['Geregistree
 df_politie = df_politie.drop(columns="WK_CODE")
 df_politie = df_politie.drop(columns="Title_y")
 df_politie['Title'] = df_politie['Title_x']
-df_politie = df_politie.drop(columns="Title_x"]
+df_politie = df_politie.drop(columns="Title_x")
 
 #datum kolom splitten om het jaar te extracten en op te slaan in een eigen kolom
 df_politie['year'] = df_politie['Perioden'].apply(lambda x: x.split('JJ')[0])
