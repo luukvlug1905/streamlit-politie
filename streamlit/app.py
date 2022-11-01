@@ -94,11 +94,12 @@ with col3:
        'Burgwallen-Nieuwe Zijde'],
         [])
 
-#with col4:
+with col4:
 #rangeslider voor de jaren opstellen
-#    yearFilter = st.slider(
-#        'Selecteer de gewenste jaren',
-#        int(df_politie['year'].min()), int(df_politie['year'].max()), ())
+    yearFilter = st.slider(
+        'Selecteer de gewenste jaren',
+        int(df_politie['year'].min()), int(df_politie['year'].max()), ())
+st.write('yearFilter')
 
 #If statement om het dashboard te laten reageren op het de filters
 if wijkFilter:
@@ -129,7 +130,7 @@ df_politie_wijken = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"].g
 df_politie_wijken_merged = df_politie_wijken.merge(politie_wijken_geo,on="WK_NAAM", how="left")
 df_politie_wijken_merged = df_politie_wijken_merged.sort_values(by="GeregistreerdeMisdrijven_1", ascending=False, ignore_index=True)
                              
-#Folium choropleth opstellen
+Folium choropleth opstellen
 geo_df = gpd.GeoDataFrame(data=df_politie_wijken_merged, geometry="geometry")
 geo_df = geo_df.to_crs(epsg = 4326)
 geo = gpd.GeoSeries(geo_df.set_index('WK_CODE')['geometry']).to_json()
