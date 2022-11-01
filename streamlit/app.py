@@ -91,8 +91,12 @@ df_politie['year'] = df_politie['Perioden'].apply(lambda x: x.split('JJ')[0])
 df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
 
 #If statement om het dashboard te laten reageren op het wijkFilter
-#if wijkFilter != 'Alle wijken':
-#    df_politie = df_politie.loc[df_politie['WK_NAAM'] == wijkFilter]
+st.write(wijkFilter)
+st.write(wijkFilter[1])
+#for i in wijkFilter:
+#    if wijkFilter[i] != 'Alle wijken':
+#        df_politie = df_politie.loc[df_politie['WK_NAAM'] == wijkFilter]
+
 st.write(wijkFilter[1])
 
 #Groupby aanmaken voor plots
