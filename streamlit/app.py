@@ -51,8 +51,8 @@ df_politie = df_politie.drop(columns="Title_x")
 #datum kolom splitten om het jaar te extracten en op te slaan in een eigen kolom
 df_politie['year'] = df_politie['Perioden'].apply(lambda x: x.split('JJ')[0])
 
-#Total kolom droppen uit dataframe voor beter overzicht in plots
-df_politie = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"]
+#Total kolom en incomplete jaren droppen uit dataframe voor beter overzicht in plots
+df_politie = df_politie.loc[(df_politie['Title'] != "Totaal misdrijven") & (~df_politie['year'].isin([2015, 2014, 2013]))]
 
 #year to numeric
 df_politie['year'] = pd.to_numeric(df_politie['year'], errors="coerce")
