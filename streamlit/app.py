@@ -114,4 +114,4 @@ with col2:
 
                              
 #Folium map weergeven                             
-folium_static(m,width=1200)
+folium_static(m,width=1250)
