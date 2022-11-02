@@ -124,13 +124,13 @@ groupbyYearTitle = groupbyYearTitle.loc[groupbyYearTitle['Title'] != "Totaal mis
 fig1 = px.bar(groupbyWijk,x='WK_NAAM',y='GeregistreerdeMisdrijven_1',labels={
                      "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
                      "WK_NAAM": "Wijken"},
-                title="Aantal misdrijven per wijk")
+                title="Aantal misdrijven van de top 20 wijken")
                              
 #Plotly chart van totaal aantal misdrijven per type misdrijf
 fig2 = px.bar(groupbyTitle,x='Title',y='GeregistreerdeMisdrijven_1',labels={
                      "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
                      "Title": "Type misdrijven"},
-                title="Aantal misdrijven per type misdrijf")
+                title="Aantallen van de top 20 misdrijven")
 
 #Plotly scatter van type misdrijven per jaar
 fig3 = px.scatter(groupbyYearTitle,x='year',y='GeregistreerdeMisdrijven_1',color='Title',labels={
