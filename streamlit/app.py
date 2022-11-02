@@ -121,13 +121,22 @@ groupbyYearTitle = df_politie.groupby(by=['year', 'Title'])['GeregistreerdeMisdr
 groupbyYearTitle = groupbyYearTitle.loc[groupbyYearTitle['Title'] != "Totaal misdrijven"]
                              
 #Plotly chart van totaal aantal misdrijven per regio
-fig1 = px.bar(groupbyWijk,x='WK_NAAM',y='GeregistreerdeMisdrijven_1')
+fig1 = px.bar(groupbyWijk,x='WK_NAAM',y='GeregistreerdeMisdrijven_1',labels={
+                     "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
+                     "WK_NAAM": "Wijken"},
+                title="Aantal misdrijven per wijk")
                              
 #Plotly chart van totaal aantal misdrijven per type misdrijf
-fig2 = px.bar(groupbyTitle,x='Title',y='GeregistreerdeMisdrijven_1')
+fig2 = px.bar(groupbyTitle,x='Title',y='GeregistreerdeMisdrijven_1',labels={
+                     "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
+                     "Title": "Type misdrijven"},
+                title="Aantal misdrijven per type misdrijf")
 
 #Plotly scatter van type misdrijven per jaar
-fig3 = px.scatter(groupbyYearTitle,x='year',y='GeregistreerdeMisdrijven_1',color='Title')
+fig3 = px.scatter(groupbyYearTitle,x='year',y='GeregistreerdeMisdrijven_1',color='Title',labels={
+                     "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
+                     "year": "Jaar"},
+                title="Aantal misdrijven per jaar")
                              
 #data mergen en groupby'en voor de folium map
 df_politie_wijken = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"].groupby('WK_NAAM')['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
@@ -145,7 +154,7 @@ test = test.merge(df_wijken_info, left_on=['WijkenEnBuurten','year'], right_on =
 fig4 = px.scatter(test, x='a_inw',y='GeregistreerdeMisdrijven_1', trendline="ols",labels={
                      "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
                      "a_inw": "Totaal # inwoners"},
-                title="Aantal misdrijven tegenover aantal inwoners"
+                title="Aantal misdrijven tegenover aantal inwoners")
                             
 #Folium choropleth opstellen
 geo_df = gpd.GeoDataFrame(data=df_politie_wijken_merged, geometry="geometry")
