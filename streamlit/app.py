@@ -8,7 +8,6 @@ import matplotlib as plt
 import folium
 import streamlit as st
 from streamlit_folium import folium_static
-import statsmodels.api as sm
 
 #Streamlit page config
 st.set_page_config(
