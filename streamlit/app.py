@@ -143,8 +143,7 @@ test = test.merge(df_wijken_info, left_on=['WijkenEnBuurten','year'], right_on =
 
 #scatterplot misdrijven per aantal inwoners
 fig4 = px.scatter(test, x='a_inw',y='GeregistreerdeMisdrijven_1', trendline="ols")
-
-                             
+                            
 #Folium choropleth opstellen
 geo_df = gpd.GeoDataFrame(data=df_politie_wijken_merged, geometry="geometry")
 geo_df = geo_df.to_crs(epsg = 4326)
@@ -193,7 +192,7 @@ with col5:
 with col6:
     tab7, tab8 = st.tabs(['Visualisatie','Bron'])
     with tab7:
-        tab7.plotly_chart(fig2)
+        tab7.plotly_chart(fig4)
     with tab8:
         tab8.subheader("Bron")
         tab8.write("Hier komt de bron")
