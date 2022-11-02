@@ -152,9 +152,9 @@ test = test.merge(df_wijken_info, left_on=['WijkenEnBuurten','year'], right_on =
 
 #scatterplot misdrijven per aantal inwoners
 fig4 = px.scatter(test, x='a_inw',y='GeregistreerdeMisdrijven_1', trendline="ols",labels={
-                     "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
+                     "GeregistreerdeMisdrijven_1": "Totaal # inbraken en diefstallen",
                      "a_inw": "Totaal # inwoners"},
-                title="Aantal misdrijven tegenover aantal inwoners")
+                title="Aantal inbraken en diefstallen tegenover aantal inwoners")
                             
 #Folium choropleth opstellen
 geo_df = gpd.GeoDataFrame(data=df_politie_wijken_merged, geometry="geometry")
