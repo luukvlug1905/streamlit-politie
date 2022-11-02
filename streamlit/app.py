@@ -1,3 +1,4 @@
+#package imports
 import numpy as np
 import pandas as pd
 import geopandas as gpd
@@ -40,7 +41,6 @@ df_politie['SoortRegio_3'] = df_politie['SoortRegio_3'].apply(lambda x : x if x 
 
 #object type vervangen voor float voor visualisaties
 df_politie['GeregistreerdeMisdrijven_1'] = pd.to_numeric(df_politie['GeregistreerdeMisdrijven_1'], errors="coerce")
-
 
 #duplicate kolom droppen
 df_politie = df_politie.drop(columns="WK_CODE")
@@ -133,6 +133,17 @@ fig3 = px.scatter(groupbyYearTitle,x='year',y='GeregistreerdeMisdrijven_1',color
 df_politie_wijken = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"].groupby('WK_NAAM')['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
 df_politie_wijken_merged = df_politie_wijken.merge(politie_wijken_geo,on="WK_NAAM", how="left")
 df_politie_wijken_merged = df_politie_wijken_merged.sort_values(by="GeregistreerdeMisdrijven_1", ascending=False, ignore_index=True)
+
+#df_wijken_info inladen
+df_wijken_info = pd.read_csv('wijken_info.csv')
+
+# removed outliers by excluding 'GeregistreerdeMisdrijven_1' <= 150
+test = df_politie.loc[(df_politie["Title"] == "1.1.1 Diefstal/inbraak woning") & (df_politie["GeregistreerdeMisdrijven_1"] <= 150)].groupby(['WK_NAAM', 'WijkenEnBuurten', 'year'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
+test = test.merge(df_wijken_info, left_on=['WijkenEnBuurten','year'], right_on = ["gwb_code", "year"], how="left")
+
+#scatterplot misdrijven per aantal inwoners
+fig4 = px.scatter(test, x='a_inw',y='GeregistreerdeMisdrijven_1', trendline="ols")
+
                              
 #Folium choropleth opstellen
 geo_df = gpd.GeoDataFrame(data=df_politie_wijken_merged, geometry="geometry")
@@ -169,6 +180,23 @@ with col2:
     with tab4:
         tab4.subheader("Bron")
         tab4.write("Hier komt de bron")
+        
+col5, col6 = st.columns(2)
+with col5:
+    tab5, tab6 = st.tabs(['Visualisatie','Bron'])
+    with tab5:
+        tab5.plotly_chart(fig3)
+    with tab6:
+        tab6.subheader("Bron")
+        tab6.write("Hier komt de bron")
+                             
+with col6:
+    tab7, tab8 = st.tabs(['Visualisatie','Bron'])
+    with tab7:
+        tab7.plotly_chart(fig2)
+    with tab8:
+        tab8.subheader("Bron")
+        tab8.write("Hier komt de bron")
 
                              
 #Folium map weergeven                             
