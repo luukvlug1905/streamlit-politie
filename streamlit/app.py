@@ -204,7 +204,9 @@ with col5:
         tab5.plotly_chart(fig3)
     with tab6:
         tab6.subheader("Bron")
-        tab6.write("Hier komt de bron")
+        tab6.write("Voor deze plot is gebruik gemaakt van 2 bronnen.")
+        tab6.write("De data over de misdrijven per jaar is gehaald uit de open politiedata bron van het CBS. Deze is via deze link terug te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
+        tab6.write("Om goed de outliers te laten zien hebben we gekozen om de misdrijven per wijk in de boxplot te plotten. De data over de wijken die wij hiervoor gebruikt hebben is hier terug te vinden: https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/wijk-en-buurtkaart-2021/.")
                              
 with col6:
     tab7, tab8 = st.tabs(['Visualisatie','Bron'])
