@@ -232,14 +232,17 @@ with col7:
     with tab9:
         tab9.plotly_chart(fig6)
     with tab10:
-        tab10.write("Voor deze visualisatie is gebruik gemaakt van sdfgsa bronnen.")
+        tab10.write("Voor deze visualisatie is gebruik gemaakt van 2 bronnen.")
+        tab10.write("De data over het aantal inwoners komt voort uit de kerncijfers per wijk en buurt. Deze datasets zijn per jaar opgesteld en hier hebben wij 2016 t/m 2021 van gebruikt. Deze data is hier terug te vinden: https://www.cbs.nl/nl-nl/reeksen/kerncijfers-wijken-en-buurten.")
+        tab10.write("Daarnaast zijn het aantal misdrijven in deze plot te zien. Deze data komt voort uit de open politiedata van het CBS. Deze data is hier terug te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
         
 with col8:
     tab11, tab12 = st.tabs(['Visualisatie','Bron'])
     with tab11:
         tab11.plotly_chart(fig5)
     with tab12:
-        tab12.write("Voor deze visualisatie is gebruik gemaakt van sdfgsa bronnen.")
+        tab12.write("Voor deze pie chart is gebruik gemaakt van 1 bron.")
+        tab12.write("Deze visualisatie is opgesteld uit data van de open politiedata van het CBS. Dit zijn het aantal misdrijven per type. Deze data is hier terug te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
         
 #Folium map weergeven                             
 folium_static(m,width=1250)
