@@ -130,29 +130,29 @@ groupbyYear = groupbyYear.loc[groupbyTitle['Title'] != "Totaal misdrijven"].sort
                              
 #Plotly chart van totaal aantal misdrijven per regio
 fig1 = px.bar(groupbyWijk,x='WK_NAAM',y='GeregistreerdeMisdrijven_1',labels={
-                     "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
+                     "GeregistreerdeMisdrijven_1": "Totaal aantal misdrijven",
                      "WK_NAAM": "Wijken"},
                 title="Aantal misdrijven van de top 20 wijken")
                              
 #Plotly chart van totaal aantal misdrijven per type misdrijf
 fig2 = px.bar(groupbyTitle,x='Title',y='GeregistreerdeMisdrijven_1',labels={
-                     "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
+                     "GeregistreerdeMisdrijven_1": "Totaal aantal misdrijven",
                      "Title": "Type misdrijven"},
                 title="Aantallen van de top 20 misdrijven")
 
 #Plotly scatter van type misdrijven per jaar
 fig3 = px.box(df_politie_grouped, x='year',y='GeregistreerdeMisdrijven_1', labels={
-                     "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
+                     "GeregistreerdeMisdrijven_1": "Totaal aantal misdrijven",
                      "year": "Jaar"},
-                title="# misdrijven per jaar per wijk")
+                title="Aantal misdrijven per jaar per wijk")
 
 #Pie chart van de verdeling van de misdrijven per type misdrijf
 fig5 = px.pie(groupbyTitle, values='GeregistreerdeMisdrijven_1', names='Title', title='Aantal misdrijven per type misdrijf',
-              labels={'Title':'Misdrijf','GeregistreerdeMisdrijven_1' : '# misdrijven'})
+              labels={'Title':'Misdrijf','GeregistreerdeMisdrijven_1' : 'Aantal misdrijven'})
 
 #Line chart van misdrijven per jaar
 fig6 = px.line(groupbyYear, x='year',y='GeregistreerdeMisdrijven_1', title='Aantal misdrijven per jaar',
-               labels={'year':'Jaar','GeregistreerdeMisdrijven_1' : '# misdrijven'})
+               labels={'year':'Jaar','GeregistreerdeMisdrijven_1' : 'Aantal misdrijven'})
 
                
 #data mergen en groupby'en voor de folium map
