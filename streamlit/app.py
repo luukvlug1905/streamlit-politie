@@ -124,6 +124,9 @@ groupbyYearTitle = df_politie.groupby(by=['year', 'Title'])['GeregistreerdeMisdr
 groupbyYearTitle = groupbyYearTitle.loc[groupbyYearTitle['Title'] != "Totaal misdrijven"]
 df_politie_grouped = df_politie.groupby(['WK_NAAM', 'WijkenEnBuurten', 'year'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
 df_politie_grouped = df_politie_grouped.merge(df_wijken_info, left_on=['WijkenEnBuurten','year'], right_on = ["gwb_code", "year"], how="left")
+groupbyYear = df_politie.groupby(by=['year'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
+groupbyYear = groupbyYear.loc[groupbyTitle['Title'] != "Totaal misdrijven"].sort_values(by="GeregistreerdeMisdrijven_1", ascending = False).iloc[0:20]
+
                              
 #Plotly chart van totaal aantal misdrijven per regio
 fig1 = px.bar(groupbyWijk,x='WK_NAAM',y='GeregistreerdeMisdrijven_1',labels={
