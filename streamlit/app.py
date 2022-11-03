@@ -183,7 +183,6 @@ with col1:
     with tab1:
         tab1.plotly_chart(fig1)
     with tab2:
-        tab2.subheader("Bron")
         tab2.write("Voor deze plot is gebruik gemaakt van 2 bronnen.") 
         tab2.write("Het aantal misdrijven per wijk en de top 20 misdrijven komt van de open politiedata van het CBS. Deze is hier te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
         tab2.write("Gezien in bovenstaande dataset de wijknamen niet staan, hebben wij een ander dataset gevonden met de wijkcodes en bijbehorende wijknamen. Deze hebben wij gemerged om misdrijven per wijknaam te kunnen laten zien. Deze is hier terug te vinden: https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/wijk-en-buurtkaart-2021/")
@@ -193,7 +192,6 @@ with col2:
     with tab3:
         tab3.plotly_chart(fig2)
     with tab4:
-        tab4.subheader("Bron")
         tab4.write("Voor deze plot is gebruik gemaakt van 1 bron.")
         tab4.write("Het aantal misdrijven per type misdrijf is te vinden in via de volgende link: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
         
@@ -203,7 +201,6 @@ with col5:
     with tab5:
         tab5.plotly_chart(fig3)
     with tab6:
-        tab6.subheader("Bron")
         tab6.write("Voor deze plot is gebruik gemaakt van 2 bronnen.")
         tab6.write("De data over de misdrijven per jaar is gehaald uit de open politiedata bron van het CBS. Deze is via deze link terug te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
         tab6.write("Om goed de outliers te laten zien hebben we gekozen om de misdrijven per wijk in de boxplot te plotten. De data over de wijken die wij hiervoor gebruikt hebben is hier terug te vinden: https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/wijk-en-buurtkaart-2021/.")
@@ -213,7 +210,6 @@ with col6:
     with tab7:
         tab7.plotly_chart(fig4)
     with tab8:
-        tab8.subheader("Bron")
         tab8.write("Voor deze scatterplot is gebruik gemaakt van 2 bronnen.")
         tab8.write("De data over het aantal inwoners komt voort uit de kerncijfers per wijk en buurt. Deze datasets zijn per jaar opgesteld en hier hebben wij 2016 t/m 2021 van gebruikt. Deze data is hier terug te vinden: https://www.cbs.nl/nl-nl/reeksen/kerncijfers-wijken-en-buurten.")
         tab8.write("Daarnaast zijn het aantal misdrijven in deze scatterplot te zien. Deze data komt voort uit de open politiedata van het CBS. Deze data is hier terug te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
