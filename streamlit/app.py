@@ -207,7 +207,9 @@ with col6:
         tab7.plotly_chart(fig4)
     with tab8:
         tab8.subheader("Bron")
-        tab8.write("Hier komt de bron")
+        tab8.write("Voor deze scatterplot is gebruik gemaakt van 2 bronbestanden.")
+        tab8.write("De data over het aantal inwoners komt voort uit de kerncijfers per wijk en buurt. Deze datasets zijn per jaar opgesteld en hier hebben wij 2016 t/m 2021 van gebruikt. Deze data is hier terug te vinden: https://www.cbs.nl/nl-nl/reeksen/kerncijfers-wijken-en-buurten")
+        tab8.write("Daarnaast zijn het aantal misdrijven in deze scatterplot te zien. Deze data komt voort uit de open politiedata van het CBS. Deze data is hier terug te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107")
 
                              
 #Folium map weergeven                             
