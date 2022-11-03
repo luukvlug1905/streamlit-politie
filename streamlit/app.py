@@ -112,6 +112,9 @@ if wijkFilter:
 if yearFilter:
     df_politie = df_politie.loc[df_politie['year'].isin(yearFilter)]
 
+#df_wijken_info inladen
+df_wijken_info = pd.read_csv('wijken_info.csv')    
+
 #Groupby aanmaken voor plots
 groupbyWijk = df_politie.groupby(by=['WK_NAAM'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
 groupbyWijk = groupbyWijk.sort_values(by="GeregistreerdeMisdrijven_1", ascending = False).iloc[0:20]
@@ -144,9 +147,6 @@ fig3 = px.box(df_politie_grouped, x='year',y='GeregistreerdeMisdrijven_1', label
 df_politie_wijken = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"].groupby('WK_NAAM')['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
 df_politie_wijken_merged = df_politie_wijken.merge(politie_wijken_geo,on="WK_NAAM", how="left")
 df_politie_wijken_merged = df_politie_wijken_merged.sort_values(by="GeregistreerdeMisdrijven_1", ascending=False, ignore_index=True)
-
-#df_wijken_info inladen
-df_wijken_info = pd.read_csv('wijken_info.csv')
 
 # removed outliers by excluding 'GeregistreerdeMisdrijven_1' <= 150
 test = df_politie.loc[(df_politie["Title"] == "1.1.1 Diefstal/inbraak woning") & (df_politie["GeregistreerdeMisdrijven_1"] <= 150)].groupby(['WK_NAAM', 'WijkenEnBuurten', 'year'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
