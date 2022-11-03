@@ -182,15 +182,18 @@ with col1:
         tab1.plotly_chart(fig1)
     with tab2:
         tab2.subheader("Bron")
-        tab2.write("Hier komt de bron")
-                             
+        tab2.write("Voor deze plot is gebruik gemaakt van 3 bronnen.") 
+        tab2.write("Het aantal misdrijven per wijk en de top 20 misdrijven komt van de open politiedata van het CBS. Deze is hier te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
+        tab2.write("Gezien in bovenstaande dataset de wijknamen niet staan, hebben wij een ander dataset gevonden met de wijkcodes en bijbehorende wijknamen. Deze hebben wij gemerged om misdrijven per wijknaam te kunnen laten zien. Deze is hier terug te vinden: https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/wijk-en-buurtkaart-2021/")
+        
 with col2:
     tab3, tab4 = st.tabs(['Visualisatie','Bron'])
     with tab3:
         tab3.plotly_chart(fig2)
     with tab4:
         tab4.subheader("Bron")
-        tab4.write("Hier komt de bron")
+        tab4.write("Voor deze plot is gebruik gemaakt van 2 bronnen.")
+        tab4.write("Het aantal misdrijven per type misdrijf is te vinden in via de volgende link: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
         
 col5, col6 = st.columns(2)
 with col5:
@@ -207,9 +210,9 @@ with col6:
         tab7.plotly_chart(fig4)
     with tab8:
         tab8.subheader("Bron")
-        tab8.write("Voor deze scatterplot is gebruik gemaakt van 2 bronbestanden.")
-        tab8.write("De data over het aantal inwoners komt voort uit de kerncijfers per wijk en buurt. Deze datasets zijn per jaar opgesteld en hier hebben wij 2016 t/m 2021 van gebruikt. Deze data is hier terug te vinden: https://www.cbs.nl/nl-nl/reeksen/kerncijfers-wijken-en-buurten")
-        tab8.write("Daarnaast zijn het aantal misdrijven in deze scatterplot te zien. Deze data komt voort uit de open politiedata van het CBS. Deze data is hier terug te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107")
+        tab8.write("Voor deze scatterplot is gebruik gemaakt van 2 bronnen.")
+        tab8.write("De data over het aantal inwoners komt voort uit de kerncijfers per wijk en buurt. Deze datasets zijn per jaar opgesteld en hier hebben wij 2016 t/m 2021 van gebruikt. Deze data is hier terug te vinden: https://www.cbs.nl/nl-nl/reeksen/kerncijfers-wijken-en-buurten.")
+        tab8.write("Daarnaast zijn het aantal misdrijven in deze scatterplot te zien. Deze data komt voort uit de open politiedata van het CBS. Deze data is hier terug te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
 
                              
 #Folium map weergeven                             
