@@ -142,7 +142,16 @@ fig3 = px.box(df_politie_grouped, x='year',y='GeregistreerdeMisdrijven_1', label
                      "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
                      "year": "Jaar"},
                 title="# misdrijven per jaar per wijk")
-                             
+
+#Pie chart van de verdeling van de misdrijven per type misdrijf
+fig5 = px.pie(groupbyTitle, values='GeregistreerdeMisdrijven_1', names='Title', title='Aantal misdrijven per type misdrijf',
+              labels={'Title':'Misdrijf','GeregistreerdeMisdrijven_1' : '# misdrijven'})
+
+#Line chart van misdrijven per jaar
+fig6 = px.line(groupbyYear, x='year',y='GeregistreerdeMisdrijven_1', title='Aantal misdrijven per jaar',
+               labels={'year':'Jaar','GeregistreerdeMisdrijven_1' : '# misdrijven'})
+
+               
 #data mergen en groupby'en voor de folium map
 df_politie_wijken = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"].groupby('WK_NAAM')['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
 df_politie_wijken_merged = df_politie_wijken.merge(politie_wijken_geo,on="WK_NAAM", how="left")
@@ -214,6 +223,20 @@ with col6:
         tab8.write("De data over het aantal inwoners komt voort uit de kerncijfers per wijk en buurt. Deze datasets zijn per jaar opgesteld en hier hebben wij 2016 t/m 2021 van gebruikt. Deze data is hier terug te vinden: https://www.cbs.nl/nl-nl/reeksen/kerncijfers-wijken-en-buurten.")
         tab8.write("Daarnaast zijn het aantal misdrijven in deze scatterplot te zien. Deze data komt voort uit de open politiedata van het CBS. Deze data is hier terug te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
 
-                             
+col7, col8 = st.columns(2)
+with col7:
+    tab9, tab10 = st.tabs(['Visualisatie','Bron'])
+    with tab9:
+        tab9.plotly_chart(fig6)
+    with tab10:
+        tab10.write("Voor deze visualisatie is gebruik gemaakt van sdfgsa bronnen.")
+        
+with col8:
+    tab11, tab12 = st.tabs(['Visualisatie','Bron'])
+    with tab11:
+        tab11.plotly_chart(fig5)
+    with tab12:
+        tab12.write("Voor deze visualisatie is gebruik gemaakt van sdfgsa bronnen.")
+        
 #Folium map weergeven                             
 folium_static(m,width=1250)
