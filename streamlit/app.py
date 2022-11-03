@@ -119,6 +119,8 @@ groupbyTitle = df_politie.groupby(by=['Title'])['GeregistreerdeMisdrijven_1'].su
 groupbyTitle = groupbyTitle.loc[groupbyTitle['Title'] != "Totaal misdrijven"].sort_values(by="GeregistreerdeMisdrijven_1", ascending = False).iloc[0:20]
 groupbyYearTitle = df_politie.groupby(by=['year', 'Title'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
 groupbyYearTitle = groupbyYearTitle.loc[groupbyYearTitle['Title'] != "Totaal misdrijven"]
+df_politie_grouped = df_politie.groupby(['WK_NAAM', 'WijkenEnBuurten', 'year'])['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
+df_politie_grouped = df_politie_grouped.merge(df_wijken_info, left_on=['WijkenEnBuurten','year'], right_on = ["gwb_code", "year"], how="left")
                              
 #Plotly chart van totaal aantal misdrijven per regio
 fig1 = px.bar(groupbyWijk,x='WK_NAAM',y='GeregistreerdeMisdrijven_1',labels={
@@ -133,10 +135,10 @@ fig2 = px.bar(groupbyTitle,x='Title',y='GeregistreerdeMisdrijven_1',labels={
                 title="Aantallen van de top 20 misdrijven")
 
 #Plotly scatter van type misdrijven per jaar
-fig3 = px.scatter(groupbyYearTitle,x='year',y='GeregistreerdeMisdrijven_1',color='Title',labels={
+fig3 = px.box(df_politie_grouped, x='year',y='GeregistreerdeMisdrijven_1', labels={
                      "GeregistreerdeMisdrijven_1": "Totaal # misdrijven",
                      "year": "Jaar"},
-                title="Aantal misdrijven per jaar")
+                title="# misdrijven per jaar per wijk")
                              
 #data mergen en groupby'en voor de folium map
 df_politie_wijken = df_politie.loc[df_politie['Title'] != "Totaal misdrijven"].groupby('WK_NAAM')['GeregistreerdeMisdrijven_1'].sum().to_frame().reset_index()
