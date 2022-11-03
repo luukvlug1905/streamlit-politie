@@ -182,7 +182,7 @@ with col1:
         tab1.plotly_chart(fig1)
     with tab2:
         tab2.subheader("Bron")
-        tab2.write("Voor deze plot is gebruik gemaakt van 3 bronnen.") 
+        tab2.write("Voor deze plot is gebruik gemaakt van 2 bronnen.") 
         tab2.write("Het aantal misdrijven per wijk en de top 20 misdrijven komt van de open politiedata van het CBS. Deze is hier te vinden: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
         tab2.write("Gezien in bovenstaande dataset de wijknamen niet staan, hebben wij een ander dataset gevonden met de wijkcodes en bijbehorende wijknamen. Deze hebben wij gemerged om misdrijven per wijknaam te kunnen laten zien. Deze is hier terug te vinden: https://www.cbs.nl/nl-nl/dossier/nederland-regionaal/geografische-data/wijk-en-buurtkaart-2021/")
         
@@ -192,7 +192,7 @@ with col2:
         tab3.plotly_chart(fig2)
     with tab4:
         tab4.subheader("Bron")
-        tab4.write("Voor deze plot is gebruik gemaakt van 2 bronnen.")
+        tab4.write("Voor deze plot is gebruik gemaakt van 1 bron.")
         tab4.write("Het aantal misdrijven per type misdrijf is te vinden in via de volgende link: https://data.politie.nl/portal.html?_la=nl&_catalog=Politie&tableId=47022NED&_theme=107.")
         
 col5, col6 = st.columns(2)
