@@ -165,7 +165,7 @@ test = df_politie.loc[(df_politie["Title"] == "1.1.1 Diefstal/inbraak woning") &
 test = test.merge(df_wijken_info, left_on=['WijkenEnBuurten','year'], right_on = ["gwb_code", "year"], how="left")
 
 #scatterplot misdrijven per aantal inwoners
-fig4 = px.scatter(test, x='a_inw',y='GeregistreerdeMisdrijven_1', trendline="ols",labels={
+fig4 = px.scatter(test, x='a_inw',y='GeregistreerdeMisdrijven_1', color='year', trendline="ols",labels={
                      "GeregistreerdeMisdrijven_1": "Totaal # woninginbraken en -diefstallen",
                      "a_inw": "Totaal # inwoners"},
                 title="Aantal woninginbraken en -diefstallen tegenover aantal inwoners")
